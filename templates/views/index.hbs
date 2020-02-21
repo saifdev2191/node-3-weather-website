@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- using absolute path for css and not relative path: ./ -->
+        <title>Weather</title>
+        <link rel = "stylesheet" href = "/css/styles.css">
+       
+    </head>
+    <body>
+        <div class="main-content">
+           {{>header}}
+           <p>Use this site to get your weather.</p>
+           <form>
+              <label for="fname">Enter Location:</label><br>
+              <input type="text" id="loc" name="fname" >
+              <input type="submit" value="Submit">
+           </form>
+           <p class="forecast"></p>
+        </div>
+        {{>footer}}
+         <script src = "/js/app.js"></script>
+    </body>
+</html>
