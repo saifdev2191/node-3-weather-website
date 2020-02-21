@@ -9,6 +9,9 @@ const hbs = require('hbs')
 //express is function . We call express function to create new express application
 const app = express();
 
+//Extracting port no for production which is provoded by heroku
+const port = process.env.PORT || 3000;
+
 console.log(__dirname);
 // Define path for express config
 const publicdirPath = path.join(__dirname,'../public');
@@ -27,7 +30,7 @@ app.set('views',viewPath)
 // We set up partials to use that piece of code that is used repeatetively in all routes ex : header
 hbs.registerPartials(partialsPath)
 
-// To serve dynamic page in views
+// To serve dynamic page in views. This is our application home page. It renders an html content.
 app.get('',(req,res)=>{
     //To render our handlebar content
     res.render('index',{
@@ -54,6 +57,7 @@ app.get('/help',(req,res)=>{
     })
 })
 
+//creating an end point/api for our web server
 app.get('/weather',(req, res)=>{
     if(!req.query.address){
         return res.send({
@@ -153,7 +157,16 @@ app.get('*',(req,res)=>{
 
 //start the server. Has two arg. First is port number and other is optional callback fn which will execute when server has been started. Starting a
 //server is asynchronous process
-app.listen(3000, () => {
-    console.log('server has started')
+
+//For local development
+// app.listen(3000, () => {
+//     console.log('server has started')
+// })
+
+app.listen(port, () => {
+    console.log('server has started:' + port)
 })
+
+
+
 

@@ -32,7 +32,8 @@ weatherForm.addEventListener('submit',(e)=>{
     const location = document.getElementById('loc').value;
     console.log(location)
 
-fetch(`http://localhost:3000/weather?address=${location}`).then((res)=>{
+//calling an api from client side js to web server (node.js)
+fetch(`/weather?address=${location}`).then((res)=>{
     res.json().then((data)=>{
         if(data.error){
             console.log(data.error)
